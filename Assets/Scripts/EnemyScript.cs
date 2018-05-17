@@ -32,7 +32,38 @@ public class EnemyScript : MonoBehaviour {
     {
         if (mPlayer != null)
         {
-            mPlayer.GetComponent<MainCharacterScript>().GoThere(_postion, true);
+            mPlayer.GetComponent<MainCharacterScript>().GoThere(transform.position, true);
         }
+    }
+
+	private void OnTriggerEnter(Collider other)
+	{
+        if(other.tag == "Hitter")
+        {
+            //Will uncomment once I have full control over animations
+            //if (mPlayer.GetComponent<MainCharacterScript>().isApexAttack() == false)
+            //return;
+
+            // force is how forcefully we will push the player away from the enemy.
+            float force = 100;
+
+            // Calculate Angle Between the collision point and the player
+            Vector3 dir = mPlayer.transform.position - transform.position;
+            // We then get the opposite (-Vector3) and normalize it
+            dir = -dir.normalized;
+            // And finally we add force in the direction of dir and multiply it by force. 
+            // This will push back the player
+            GetComponent<Rigidbody>().AddForce(dir * force);
+            Invoke("DeactivateForce", .5f);
+        }
+            
+	}
+
+    void DeactivateForce()
+    {
+        Debug.Log("Attempting to Stop Enemy Stagger");
+
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
     }
 }

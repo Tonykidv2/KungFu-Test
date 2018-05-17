@@ -8,11 +8,13 @@ public class MainCharacterScript : MonoBehaviour {
 
     private Animator mAnimator;
     public NavMeshAgent mNavMeshAgent;
+    private Vector3 mEnemyPosition;
     public float mRotSpeed = 7f;
     public bool mAttackingEnemy = false;
 
     //this value will change for AR App later
-    public float mStoppingDistance = 1f;
+    //Must match stopping distance from NavMeshAgent
+    public float mStoppingDistance = 1.5f;
 
 	// Use this for initialization
 	void Start () {
@@ -45,6 +47,8 @@ public class MainCharacterScript : MonoBehaviour {
         
         mNavMeshAgent.SetDestination(_Destination);
         mAttackingEnemy = _isEnemy;
+        if (mAttackingEnemy)
+            mEnemyPosition = _Destination;
     }
 
     private void InstantlyTurn(Vector3 destination)
@@ -62,9 +66,12 @@ public class MainCharacterScript : MonoBehaviour {
         mNavMeshAgent.SetDestination(transform.position);
         mNavMeshAgent.isStopped = true;
         mAttackingEnemy = false;
-        //Enter Attack Logic Here
+        //////Enter Attack Logic Here///////
+        transform.LookAt(mEnemyPosition);
         mAnimator.SetTrigger("Attack1Trigger");
-        /////////////////////////
+        //////More Attack Logic/////////////
+        ////////////////////////////////////
+
         mNavMeshAgent.isStopped = false;
     }
 }
