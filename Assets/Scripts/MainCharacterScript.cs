@@ -36,6 +36,7 @@ public class MainCharacterScript : MonoBehaviour {
             if(Vector3.Distance(mNavMeshAgent.destination, transform.position) < mStoppingDistance)
             {
                 mNavMeshAgent.isStopped = true;
+                AttackEnemyBehavior();
             }
         }
 	}
@@ -54,5 +55,16 @@ public class MainCharacterScript : MonoBehaviour {
         Vector3 direction = (destination - transform.position).normalized;
         Quaternion qDir = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, qDir, Time.deltaTime * mRotSpeed);
+    }
+
+    private void AttackEnemyBehavior()
+    {
+        mNavMeshAgent.SetDestination(transform.position);
+        mNavMeshAgent.isStopped = true;
+        mAttackingEnemy = false;
+        //Enter Attack Logic Here
+        mAnimator.SetTrigger("Attack1Trigger");
+        /////////////////////////
+        mNavMeshAgent.isStopped = false;
     }
 }
