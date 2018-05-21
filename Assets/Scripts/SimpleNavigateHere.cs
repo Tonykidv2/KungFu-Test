@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class SimpleNavigateHere : MonoBehaviour {
 
-    private GameObject Player;
+    private GameObject mPlayer;
+    public GameObject mMarker;
     // Use this for initialization
     void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
+        mPlayer = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -19,9 +20,13 @@ public class SimpleNavigateHere : MonoBehaviour {
 
     void OnTouchDown(Vector3 _postion)
     {
-        if (Player != null)
+        if (mPlayer != null)
         {
-            Player.GetComponent<MainCharacterScript>().GoThere(_postion, false);
+            mPlayer.GetComponent<MainCharacterScript>().GoThere(_postion, false);
+            if(mMarker)
+            {
+                Instantiate(mMarker, _postion, new Quaternion());
+            }
         }
     }
 }
