@@ -25,6 +25,12 @@ public class SimpleNavigateHere : MonoBehaviour {
             mPlayer.GetComponent<MainCharacterScript>().GoThere(_postion, false);
             if(mMarker)
             {
+                GameObject[] markers = GameObject.FindGameObjectsWithTag("Marker");
+                foreach(var mark in  markers)
+                {
+                    Destroy(mark);
+                }
+
                 Instantiate(mMarker, _postion, new Quaternion());
             }
         }
