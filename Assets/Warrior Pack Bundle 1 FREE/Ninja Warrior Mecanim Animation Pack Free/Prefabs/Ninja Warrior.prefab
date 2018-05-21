@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 11497932}
   - component: {fileID: 136582671745418498}
   - component: {fileID: 54197939858055644}
-  - component: {fileID: 114151469385498482}
+  - component: {fileID: 114548039277302572}
   m_Layer: 0
   m_Name: Ninja Warrior
   m_TagString: Untagged
@@ -822,8 +822,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: -0.0035317095, y: -0.9224325, z: -0.0084387055, w: 0.38605013}
-  m_LocalPosition: {x: 9.2468405, y: 0, z: 9.968757}
+  m_LocalRotation: {x: -0, y: -0.49726763, z: -0, w: 0.8675972}
+  m_LocalPosition: {x: 7.827971, y: 0, z: -13.238104}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 428654}
@@ -1725,7 +1725,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 20
   m_CollisionDetection: 0
---- !u!114 &114151469385498482
+--- !u!114 &114548039277302572
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1733,11 +1733,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f97577f7490be846abb026b83b52db0, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c0c54c083335444a993e4ce9b142dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlowColor: {r: 0.07358187, g: 0.9529412, b: 0.011764699, a: 0}
-  LerpFactor: 5
+  useNormal: 0
+  glowMode: 2
+  flashing: 1
+  flashSpeed: 2.03
+  noOcclusion: 0
+  scaleGlow: 1
+  glowIntensity: 1
+  glowOpacity: 1
+  glowColor: {r: 1, g: 0, b: 0, a: 1}
+  labelToDisplay: LABEL
+  labelMode: 0
+  labelColor: {r: 1, g: 1, b: 1, a: 1}
+  outlined: 1
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  textFont: {fileID: 0}
+  fontSize: 12
 --- !u!136 &136582671745418498
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -33,7 +33,14 @@ public class EnemyScript : MonoBehaviour {
         if (mPlayer != null)
         {
             mPlayer.GetComponent<MainCharacterScript>().GoThere(transform.position, true);
+            GetComponent<shaderGlow>().lightOn();
+            Invoke("TurnOffGlow", 1);
         }
+    }
+
+    void TurnOffGlow()
+    {
+        GetComponent<shaderGlow>().lightOff();
     }
 
 	private void OnTriggerEnter(Collider other)
