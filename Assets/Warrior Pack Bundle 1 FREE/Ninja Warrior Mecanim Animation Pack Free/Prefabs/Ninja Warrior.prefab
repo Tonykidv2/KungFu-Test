@@ -822,8 +822,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: -0, y: -0.49726763, z: -0, w: 0.8675972}
-  m_LocalPosition: {x: 7.827971, y: 0, z: -13.238104}
+  m_LocalRotation: {x: -0, y: 0.37758234, z: -0, w: 0.92597604}
+  m_LocalPosition: {x: -12.845854, y: 0, z: -12.982092}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 428654}
@@ -1745,7 +1745,7 @@ MonoBehaviour:
   glowIntensity: 1
   glowOpacity: 1
   glowColor: {r: 1, g: 0, b: 0, a: 1}
-  labelToDisplay: LABEL
+  labelToDisplay: 
   labelMode: 0
   labelColor: {r: 1, g: 1, b: 1, a: 1}
   outlined: 1

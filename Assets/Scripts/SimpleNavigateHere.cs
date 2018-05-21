@@ -25,12 +25,14 @@ public class SimpleNavigateHere : MonoBehaviour {
             mPlayer.GetComponent<MainCharacterScript>().GoThere(_postion, false);
             if(mMarker)
             {
+                //Delete any old marker that may still be in the screen
                 GameObject[] markers = GameObject.FindGameObjectsWithTag("Marker");
                 foreach(var mark in  markers)
                 {
                     Destroy(mark);
                 }
 
+                //Instantiate new Marker at new position
                 Instantiate(mMarker, _postion, new Quaternion());
             }
         }

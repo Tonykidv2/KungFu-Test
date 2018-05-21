@@ -19,6 +19,7 @@ public class MarkerScript : MonoBehaviour {
         if(other.gameObject.tag == "Player")
         {
             Debug.Log("The Player made it to position");
+            //Using 'this' will only delete the script not the entire gameObject
             Destroy(gameObject);
         }
 	}
