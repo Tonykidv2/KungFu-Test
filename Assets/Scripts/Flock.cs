@@ -28,7 +28,7 @@ public class Flock : MonoBehaviour {
             if (Boid.tag == "Player")
                 continue;
             Vector3 accel = Vector3.zero;
-            accel += CalculateCohesionAcceleration(Boid);
+            //accel += CalculateCohesionAcceleration(Boid);
             accel += CalculateSeparationAcceleration(Boid);
             float accelMultiplier = 3; //Objects MaxSpeed
 

@@ -1,19 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour {
 
     private GameObject mPlayer;
     private float mRotationSpeed = 5f;
+    private NavMeshAgent mNavMeshAgent;
+    private Animator mAnimator;
     // Use this for initialization
     void Start () {
         mPlayer = GameObject.FindGameObjectWithTag("Player");
+        mNavMeshAgent = GetComponent<NavMeshAgent>();
+        mAnimator = GetComponent<Animator>();
     }
 
 	// Update is called once per frame
 	void Update () {
         TurnTo();
+        Vector3 velocity = GetComponent<Rigidbody>().velocity;
+        if (/*mNavMeshAgent.velocity != Vector3.zero ||*/ velocity.magnitude > .5f)
+        {
+            mAnimator.SetBool("Moving", true);
+        }
+        else
+        {
+            mAnimator.SetBool("Moving", false);
+        }
 	}
 
     private void TurnTo()
