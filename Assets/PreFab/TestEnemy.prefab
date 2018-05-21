@@ -401,7 +401,7 @@ GameObject:
   - component: {fileID: 114994498883089854}
   m_Layer: 0
   m_Name: TestEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1646,7 +1646,7 @@ MonoBehaviour:
   glowIntensity: 1
   glowOpacity: 1
   glowColor: {r: 1, g: 0, b: 0, a: 1}
-  labelToDisplay: LABEL
+  labelToDisplay: 
   labelMode: 0
   labelColor: {r: 1, g: 1, b: 1, a: 1}
   outlined: 1

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 114548039277302572}
   m_Layer: 0
   m_Name: Ninja Warrior
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1736,7 +1736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c0c54c083335444a993e4ce9b142dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useNormal: 0
+  useNormal: 1
   glowMode: 2
   flashing: 1
   flashSpeed: 2.03

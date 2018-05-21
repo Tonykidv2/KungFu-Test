@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hitter
   - Marker
+  - Enemy
   layers:
   - Default
   - TransparentFX
