@@ -37,6 +37,7 @@ public class Flock : MonoBehaviour {
             //Boids[i].Velocity += accel;
             Boid.GetComponent<Rigidbody>().AddForce(accel);
 
+
             if (Boid.GetComponent<Rigidbody>().velocity.magnitude > 3) // 3 == Objects MaxSpeed
             {
                 Boid.GetComponent<Rigidbody>().velocity.Normalize();

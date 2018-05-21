@@ -846,7 +846,7 @@ MonoBehaviour:
   SeparationStrength: 5
   Boids: []
   AveragePosition: {x: 0, y: 0, z: 0}
-  FlockRadius: 0
+  FlockRadius: 10
 --- !u!4 &984938155
 Transform:
   m_ObjectHideFlags: 0

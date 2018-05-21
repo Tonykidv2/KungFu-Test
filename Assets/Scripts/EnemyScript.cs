@@ -71,6 +71,6 @@ public class EnemyScript : MonoBehaviour {
         Debug.Log("Attempting to Stop Enemy Stagger");
 
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        //GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
     }
 }
