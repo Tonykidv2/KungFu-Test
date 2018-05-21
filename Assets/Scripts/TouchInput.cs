@@ -30,7 +30,7 @@ public class TouchInput : MonoBehaviour {
             touchList.Clear();
 
             Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
-		    Debug.DrawRay(ray.origin, ray.direction);
+		    //Debug.DrawRay(ray.origin, ray.direction);
 
             if (Physics.Raycast(ray, out hit, touchInputMask))
             {
