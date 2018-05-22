@@ -9,6 +9,7 @@ public class EnemyScript : MonoBehaviour {
     private float mRotationSpeed = 5f;
     private NavMeshAgent mNavMeshAgent;
     private Animator mAnimator;
+    private bool inFlock = true;
     // Use this for initialization
     void Start () {
         mPlayer = GameObject.FindGameObjectWithTag("Player");
@@ -48,6 +49,7 @@ public class EnemyScript : MonoBehaviour {
         {
             mPlayer.GetComponent<MainCharacterScript>().GoThere(transform.position, true);
             GetComponent<shaderGlow>().lightOn();
+            inFlock = false;
             Invoke("TurnOffGlow", 1);
         }
     }
@@ -75,6 +77,7 @@ public class EnemyScript : MonoBehaviour {
             // And finally we add force in the direction of dir and multiply it by force. 
             // This will push back the player
             GetComponent<Rigidbody>().AddForce(dir * force);
+            inFlock = true;
             Invoke("DeactivateForce", .5f);
         }
             
@@ -86,5 +89,9 @@ public class EnemyScript : MonoBehaviour {
 
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         //GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+    }
+    public bool IsInFlock()
+    {
+        return inFlock;
     }
 }

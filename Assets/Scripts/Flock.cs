@@ -25,7 +25,7 @@ public class Flock : MonoBehaviour {
 
         foreach (var Boid in Boids)
         {
-            if (Boid.tag == "Player")
+            if (Boid.tag == "Player" || (Boid.tag == "Enemy" && !Boid.GetComponent<EnemyScript>().IsInFlock()))
                 continue;
             Vector3 accel = Vector3.zero;
             accel += CalculateCohesionAcceleration(Boid);
