@@ -28,9 +28,9 @@ public class Flock : MonoBehaviour {
             if (Boid.tag == "Player")
                 continue;
             Vector3 accel = Vector3.zero;
-            //accel += CalculateCohesionAcceleration(Boid);
+            accel += CalculateCohesionAcceleration(Boid);
             accel += CalculateSeparationAcceleration(Boid);
-            float accelMultiplier = 3; //Objects MaxSpeed
+            float accelMultiplier = 10; //Objects MaxSpeed
 
             accel *= accelMultiplier * Time.deltaTime;
 
@@ -38,10 +38,10 @@ public class Flock : MonoBehaviour {
             Boid.GetComponent<Rigidbody>().AddForce(accel);
 
 
-            if (Boid.GetComponent<Rigidbody>().velocity.magnitude > 3) // 3 == Objects MaxSpeed
+            if (Boid.GetComponent<Rigidbody>().velocity.magnitude > 10) // 3 == Objects MaxSpeed
             {
                 Boid.GetComponent<Rigidbody>().velocity.Normalize();
-                Boid.GetComponent<Rigidbody>().AddForce(Boid.GetComponent<Rigidbody>().velocity * 3); // 3 == Objects MaxSpeed
+                Boid.GetComponent<Rigidbody>().AddForce(Boid.GetComponent<Rigidbody>().velocity * 10); // 3 == Objects MaxSpeed
             }
             //Boids[i].Update(deltaTime);
         }
