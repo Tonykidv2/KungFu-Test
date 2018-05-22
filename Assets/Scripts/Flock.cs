@@ -40,7 +40,7 @@ public class Flock : MonoBehaviour {
 
             if (Boid.GetComponent<Rigidbody>().velocity.magnitude > 10) // 3 == Objects MaxSpeed
             {
-                Boid.GetComponent<Rigidbody>().velocity.Normalize();
+                Boid.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 Boid.GetComponent<Rigidbody>().AddForce(Boid.GetComponent<Rigidbody>().velocity * 10); // 3 == Objects MaxSpeed
             }
             //Boids[i].Update(deltaTime);
@@ -124,7 +124,7 @@ public class Flock : MonoBehaviour {
             case "Player":
                 return 5;
             case "Enemy":
-                return 2;
+                return 5;
             default:
                 return 2;
         }
