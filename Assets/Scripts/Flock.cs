@@ -93,7 +93,7 @@ public class Flock : MonoBehaviour {
         Vector3 sum = Vector3.zero;
 
         foreach (var Boid in Boids)
-        {
+        { 
             if (Boid == boid)
                 continue;
 

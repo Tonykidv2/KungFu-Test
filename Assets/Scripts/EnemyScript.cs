@@ -31,18 +31,6 @@ public class EnemyScript : MonoBehaviour {
         }
 	}
 
-    private void TurnTo()
-    {
-        //find the vector pointing from our position to the target
-        Vector3 _direction = (mPlayer.transform.position - transform.position).normalized;
-
-        //create the rotation we need to be in to look at the target
-        Quaternion _lookRotation = Quaternion.LookRotation(_direction);
-
-        //rotate us over time according to speed until we are in the required rotation
-        transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * mRotationSpeed);
-    }
-
     void OnTouchDown(Vector3 _postion)
     {
         if (mPlayer != null)
@@ -54,22 +42,17 @@ public class EnemyScript : MonoBehaviour {
         }
     }
 
-    void TurnOffGlow()
+    void OnTriggerEnter(Collider other)
     {
-        GetComponent<shaderGlow>().lightOff();
-    }
-
-	private void OnTriggerEnter(Collider other)
-	{
         if(other.tag == "Hitter")
         {
             //Will uncomment once I have full control over animations
             //if (mPlayer.GetComponent<MainCharacterScript>().isApexAttack() == false)
-            //return;
-
-            // force is how forcefully we will push the player away from the enemy.
+            //      return;
+            
+            // force is how forcefully we will push the enemy away from the player.
             float force = 100;
-
+            
             // Calculate Angle Between the collision point and the player
             Vector3 dir = mPlayer.transform.position - transform.position;
             // We then get the opposite (-Vector3) and normalize it
@@ -80,8 +63,25 @@ public class EnemyScript : MonoBehaviour {
             inFlock = true;
             Invoke("DeactivateForce", .5f);
         }
-            
-	}
+        
+    }
+
+    void TurnTo()
+    {
+        //find the vector pointing from our position to the target
+        Vector3 _direction = (mPlayer.transform.position - transform.position).normalized;
+        
+        //create the rotation we need to be in to look at the target
+        Quaternion _lookRotation = Quaternion.LookRotation(_direction);
+        
+        //rotate us over time according to speed until we are in the required rotation
+        transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * mRotationSpeed);
+    }
+
+    void TurnOffGlow()
+    {
+        GetComponent<shaderGlow>().lightOff();
+    }
 
     void DeactivateForce()
     {
@@ -90,6 +90,7 @@ public class EnemyScript : MonoBehaviour {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         //GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
     }
+
     public bool IsInFlock()
     {
         return inFlock;
