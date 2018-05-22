@@ -25,22 +25,23 @@ public class Flock : MonoBehaviour {
 
         foreach (var Boid in Boids)
         {
-            if (Boid.tag == "Player")
+            if (Boid.tag == "Player" || (Boid.tag == "Enemy" && !Boid.GetComponent<EnemyScript>().IsInFlock()))
                 continue;
             Vector3 accel = Vector3.zero;
             accel += CalculateCohesionAcceleration(Boid);
             accel += CalculateSeparationAcceleration(Boid);
-            float accelMultiplier = 3; //Objects MaxSpeed
+            float accelMultiplier = 10; //Objects MaxSpeed
 
             accel *= accelMultiplier * Time.deltaTime;
 
             //Boids[i].Velocity += accel;
             Boid.GetComponent<Rigidbody>().AddForce(accel);
 
-            if (Boid.GetComponent<Rigidbody>().velocity.magnitude > 3) // 3 == Objects MaxSpeed
+
+            if (Boid.GetComponent<Rigidbody>().velocity.magnitude > 10) // 3 == Objects MaxSpeed
             {
-                Boid.GetComponent<Rigidbody>().velocity.Normalize();
-                Boid.GetComponent<Rigidbody>().AddForce(Boid.GetComponent<Rigidbody>().velocity * 3); // 3 == Objects MaxSpeed
+                Boid.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                Boid.GetComponent<Rigidbody>().AddForce(Boid.GetComponent<Rigidbody>().velocity * 10); // 3 == Objects MaxSpeed
             }
             //Boids[i].Update(deltaTime);
         }
@@ -92,7 +93,7 @@ public class Flock : MonoBehaviour {
         Vector3 sum = Vector3.zero;
 
         foreach (var Boid in Boids)
-        {
+        { 
             if (Boid == boid)
                 continue;
 
@@ -123,7 +124,7 @@ public class Flock : MonoBehaviour {
             case "Player":
                 return 5;
             case "Enemy":
-                return 2;
+                return 5;
             default:
                 return 2;
         }

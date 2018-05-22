@@ -51,7 +51,7 @@ public class MainCharacterScript : MonoBehaviour {
             mEnemyPosition = _Destination;
     }
 
-    private void InstantlyTurn(Vector3 destination)
+    void InstantlyTurn(Vector3 destination)
     {
         //When on target -> dont rotate!
         if ((destination - transform.position).magnitude < 0.1f) return;
@@ -61,7 +61,7 @@ public class MainCharacterScript : MonoBehaviour {
         transform.rotation = Quaternion.Slerp(transform.rotation, qDir, Time.deltaTime * mRotSpeed);
     }
 
-    private void AttackEnemyBehavior()
+    void AttackEnemyBehavior()
     {
         mNavMeshAgent.SetDestination(transform.position);
         mNavMeshAgent.isStopped = true;
@@ -74,4 +74,5 @@ public class MainCharacterScript : MonoBehaviour {
 
         mNavMeshAgent.isStopped = false;
     }
+
 }
