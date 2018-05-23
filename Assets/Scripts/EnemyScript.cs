@@ -115,7 +115,7 @@ public class EnemyScript : MonoBehaviour {
         GetComponent<shaderGlow>().glowColor = mLightUpAttackColor;
         GetComponent<shaderGlow>().lightOn();
         //Later in Dev. Enemy will do some animation before attacking then run up to attack
-        Invoke("TurnOffGlow", 2);
+        Invoke("TurnOffGlow", 5);
 
     }
     //To be deleted later
