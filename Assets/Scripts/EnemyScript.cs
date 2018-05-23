@@ -11,6 +11,8 @@ public class EnemyScript : MonoBehaviour {
     private Animator mAnimator;
     private bool inFlock = true;
     public Color mLightUpAttackColor;
+    private bool mWillCounter;
+    private bool mLightOn = false;
     // Use this for initialization
     void Start () {
         mPlayer = GameObject.FindGameObjectWithTag("Player");
@@ -22,6 +24,7 @@ public class EnemyScript : MonoBehaviour {
 	void Update () {
         TurnTo();
         Vector3 velocity = GetComponent<Rigidbody>().velocity;
+        mWillCounter = false;
         if (/*mNavMeshAgent.velocity != Vector3.zero ||*/ velocity.magnitude > .5f)
         {
             mAnimator.SetBool("Moving", true);
@@ -36,8 +39,23 @@ public class EnemyScript : MonoBehaviour {
     {
         if (mPlayer != null)
         {
+            Color color = GetComponent<shaderGlow>().glowColor;
+            Color yellow = new Color(1, 1, 0);
+            Color blue = new Color(0, 0, 1);
+            if (color == yellow)
+            {
+                GetComponent<shaderGlow>().lightOff();
+                GetComponent<shaderGlow>().glowColor = Color.red;
+                GetComponent<shaderGlow>().lightOn();
+                mLightOn = true;
+                Invoke("TurnOffGlow", 1);
+                mWillCounter = true;
+                return;
+            }
             mPlayer.GetComponent<MainCharacterScript>().GoThere(transform.position, true);
+            TurnOffGlow();
             GetComponent<shaderGlow>().lightOn();
+            mLightOn = true;
             inFlock = false;
             Invoke("TurnOffGlow", 1);
         }
@@ -45,6 +63,9 @@ public class EnemyScript : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
+        if(mWillCounter)
+            mWillCounter = false;
+
         if(other.tag == "Hitter")
         {
             //Will uncomment once I have full control over animations
@@ -81,6 +102,9 @@ public class EnemyScript : MonoBehaviour {
 
     void TurnOffGlow()
     {
+        if (!mLightOn)
+            return;
+        mLightOn = false;
         GetComponent<shaderGlow>().lightOff();
         GetComponent<shaderGlow>().glowColor = Color.green;
     }
@@ -114,10 +138,12 @@ public class EnemyScript : MonoBehaviour {
     {
         GetComponent<shaderGlow>().glowColor = mLightUpAttackColor;
         GetComponent<shaderGlow>().lightOn();
+        mLightOn = true;
         //Later in Dev. Enemy will do some animation before attacking then run up to attack
         Invoke("TurnOffGlow", 5);
 
     }
+
     //To be deleted later
     void ReturnToNormal()
     {
