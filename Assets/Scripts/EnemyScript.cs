@@ -10,6 +10,7 @@ public class EnemyScript : MonoBehaviour {
     private NavMeshAgent mNavMeshAgent;
     private Animator mAnimator;
     private bool inFlock = true;
+    public Color mLightUpAttackColor;
     // Use this for initialization
     void Start () {
         mPlayer = GameObject.FindGameObjectWithTag("Player");
@@ -81,6 +82,7 @@ public class EnemyScript : MonoBehaviour {
     void TurnOffGlow()
     {
         GetComponent<shaderGlow>().lightOff();
+        GetComponent<shaderGlow>().glowColor = Color.green;
     }
 
     void DeactivateForce()
@@ -94,5 +96,31 @@ public class EnemyScript : MonoBehaviour {
     public bool IsInFlock()
     {
         return inFlock;
+    }
+
+    public void GetReadyToAttack()
+    {
+        //Remove from flock behavior
+        //Light up to Signify It's going to fight
+        //Run up to attack 
+        //Return to Flock afterwards
+        inFlock = false;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        LightOnAttack();
+        Invoke("ReturnToNormal", 5);
+    }
+
+    void LightOnAttack()
+    {
+        GetComponent<shaderGlow>().glowColor = mLightUpAttackColor;
+        GetComponent<shaderGlow>().lightOn();
+        //Later in Dev. Enemy will do some animation before attacking then run up to attack
+        Invoke("TurnOffGlow", 2);
+
+    }
+    //To be deleted later
+    void ReturnToNormal()
+    {
+        inFlock = true;
     }
 }
