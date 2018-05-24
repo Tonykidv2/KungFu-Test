@@ -41,8 +41,7 @@ public class EnemyScript : MonoBehaviour {
         {
             Color color = GetComponent<shaderGlow>().glowColor;
             Color yellow = new Color(1, 1, 0);
-            Color blue = new Color(0, 0, 1);
-            if (color == yellow)
+            if (color == yellow || color == Color.red)
             {
                 CounterAttackGlow();
                 return;
@@ -56,9 +55,7 @@ public class EnemyScript : MonoBehaviour {
         if (mPlayer != null)
         {
             Color color = GetComponent<shaderGlow>().glowColor;
-            Color yellow = new Color(1, 1, 0);
-            Color blue = new Color(0, 0, 1);
-            if (color == blue)
+            if (color == Color.blue || color == Color.red)
             {
                 CounterAttackGlow();
                 return;

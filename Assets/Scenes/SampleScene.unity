@@ -847,11 +847,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11497932, guid: 88800a0f24d88d24baf23a76f5adcaaa, type: 2}
       propertyPath: mLightUpAttackColor.r
-      value: 0.033018887
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11497932, guid: 88800a0f24d88d24baf23a76f5adcaaa, type: 2}
       propertyPath: mLightUpAttackColor.g
-      value: 0.2225519
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11497932, guid: 88800a0f24d88d24baf23a76f5adcaaa, type: 2}
       propertyPath: mLightUpAttackColor.b
@@ -869,6 +869,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 88800a0f24d88d24baf23a76f5adcaaa, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497932, guid: 88800a0f24d88d24baf23a76f5adcaaa, type: 2}
+      propertyPath: mLightUpAttackColor.a
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1109,17 +1113,17 @@ Prefab:
     - target: {fileID: 114685448948154548, guid: fa5bfb12a924e418c84096c773f85fa1,
         type: 2}
       propertyPath: mLightUpAttackColor.r
-      value: 0.022472408
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114685448948154548, guid: fa5bfb12a924e418c84096c773f85fa1,
         type: 2}
       propertyPath: mLightUpAttackColor.g
-      value: 0.21645902
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114685448948154548, guid: fa5bfb12a924e418c84096c773f85fa1,
         type: 2}
       propertyPath: mLightUpAttackColor.b
-      value: 0.9528302
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114098437818558648, guid: fa5bfb12a924e418c84096c773f85fa1,
         type: 2}
@@ -1135,6 +1139,11 @@ Prefab:
         type: 2}
       propertyPath: glowColor.b
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114685448948154548, guid: fa5bfb12a924e418c84096c773f85fa1,
+        type: 2}
+      propertyPath: mLightUpAttackColor.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa5bfb12a924e418c84096c773f85fa1, type: 2}
