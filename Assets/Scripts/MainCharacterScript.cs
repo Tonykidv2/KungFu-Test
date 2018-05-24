@@ -75,4 +75,8 @@ public class MainCharacterScript : MonoBehaviour {
         mNavMeshAgent.isStopped = false;
     }
 
+    public bool isAttackingEnemy()
+    {
+        return mAttackingEnemy;
+    }
 }

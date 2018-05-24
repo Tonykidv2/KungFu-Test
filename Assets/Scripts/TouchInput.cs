@@ -47,7 +47,7 @@ public class TouchInput : MonoBehaviour {
                 }
                 if (Input.GetMouseButton(0))
                 {
-                    recipient.SendMessage("OnTouchStay", hit.point, SendMessageOptions.DontRequireReceiver);
+                    recipient.SendMessage("OnTouchSwipe", hit.point, SendMessageOptions.DontRequireReceiver);
                 }
 
             }

@@ -23,6 +23,9 @@ public class SimpleNavigateHere : MonoBehaviour {
     {
         if (mPlayer != null)
         {
+            if (mPlayer.GetComponent<MainCharacterScript>().isAttackingEnemy())
+                return;
+            
             mPlayer.GetComponent<MainCharacterScript>().GoThere(_postion, false);
             if(mMarker)
             {
