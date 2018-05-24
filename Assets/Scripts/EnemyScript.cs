@@ -6,11 +6,11 @@ using UnityEngine.AI;
 public class EnemyScript : MonoBehaviour {
 
     private GameObject mPlayer;
-    private float mRotationSpeed = 5f;
+    public Color mLightUpAttackColor;
     private NavMeshAgent mNavMeshAgent;
     private Animator mAnimator;
+    private float mRotationSpeed = 5f;
     private bool inFlock = true;
-    public Color mLightUpAttackColor;
     private bool mWillCounter;
     private bool mLightOn = false;
     // Use this for initialization
@@ -44,21 +44,10 @@ public class EnemyScript : MonoBehaviour {
             Color blue = new Color(0, 0, 1);
             if (color == yellow)
             {
-                GetComponent<shaderGlow>().lightOff();
-                GetComponent<shaderGlow>().glowColor = Color.red;
-                GetComponent<shaderGlow>().lightOn();
-                //mLightOn = true;
-                Invoke("TurnOffGlow", 1);
-                inFlock = false;
-                mWillCounter = true;
+                CounterAttackGlow();
                 return;
             }
-            mPlayer.GetComponent<MainCharacterScript>().GoThere(transform.position, true);
-            TurnOffGlow();
-            GetComponent<shaderGlow>().lightOn();
-            //mLightOn = true;
-            inFlock = false;
-            Invoke("TurnOffGlow", 1);
+            PlayerAttackGlow();
         }
     }
 
@@ -71,21 +60,10 @@ public class EnemyScript : MonoBehaviour {
             Color blue = new Color(0, 0, 1);
             if (color == blue)
             {
-                GetComponent<shaderGlow>().lightOff();
-                GetComponent<shaderGlow>().glowColor = Color.red;
-                GetComponent<shaderGlow>().lightOn();
-                mLightOn = true;
-                inFlock = false;
-                Invoke("TurnOffGlow", 1);
-                mWillCounter = true;
+                CounterAttackGlow();
                 return;
             }
-            mPlayer.GetComponent<MainCharacterScript>().GoThere(transform.position, true);
-            TurnOffGlow();
-            GetComponent<shaderGlow>().lightOn();
-            mLightOn = true;
-            inFlock = false;
-            Invoke("TurnOffGlow", 1);
+            PlayerAttackGlow();
         }
     }
 
@@ -138,6 +116,25 @@ public class EnemyScript : MonoBehaviour {
         GetComponent<shaderGlow>().glowColor = Color.green;
     }
 
+    void CounterAttackGlow()
+    {
+        TurnOffGlow();
+        GetComponent<shaderGlow>().glowColor = Color.red;
+        GetComponent<shaderGlow>().lightOn();
+        inFlock = false;
+        Invoke("TurnOffGlow", 1);
+        mWillCounter = true;
+    }
+
+    void PlayerAttackGlow()
+    {
+        mPlayer.GetComponent<MainCharacterScript>().GoThere(transform.position, true);
+        TurnOffGlow();
+        GetComponent<shaderGlow>().lightOn();
+        inFlock = false;
+        Invoke("TurnOffGlow", 1);
+    }
+
     void DeactivateForce()
     {
         Debug.Log("Attempting to Stop Enemy Stagger");
@@ -177,5 +174,6 @@ public class EnemyScript : MonoBehaviour {
     void ReturnToNormal()
     {
         inFlock = true;
+        mWillCounter = false;
     }
 }
