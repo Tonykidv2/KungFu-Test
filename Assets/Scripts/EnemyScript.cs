@@ -47,7 +47,35 @@ public class EnemyScript : MonoBehaviour {
                 GetComponent<shaderGlow>().lightOff();
                 GetComponent<shaderGlow>().glowColor = Color.red;
                 GetComponent<shaderGlow>().lightOn();
+                //mLightOn = true;
+                Invoke("TurnOffGlow", 1);
+                inFlock = false;
+                mWillCounter = true;
+                return;
+            }
+            mPlayer.GetComponent<MainCharacterScript>().GoThere(transform.position, true);
+            TurnOffGlow();
+            GetComponent<shaderGlow>().lightOn();
+            //mLightOn = true;
+            inFlock = false;
+            Invoke("TurnOffGlow", 1);
+        }
+    }
+
+    void OnTouchSwipe(Vector3 _postion)
+    {
+        if (mPlayer != null)
+        {
+            Color color = GetComponent<shaderGlow>().glowColor;
+            Color yellow = new Color(1, 1, 0);
+            Color blue = new Color(0, 0, 1);
+            if (color == blue)
+            {
+                GetComponent<shaderGlow>().lightOff();
+                GetComponent<shaderGlow>().glowColor = Color.red;
+                GetComponent<shaderGlow>().lightOn();
                 mLightOn = true;
+                inFlock = false;
                 Invoke("TurnOffGlow", 1);
                 mWillCounter = true;
                 return;
@@ -84,6 +112,7 @@ public class EnemyScript : MonoBehaviour {
             GetComponent<Rigidbody>().AddForce(dir * force);
             inFlock = true;
             Invoke("DeactivateForce", .5f);
+            ReturnToNormal();
         }
         
     }
@@ -102,9 +131,9 @@ public class EnemyScript : MonoBehaviour {
 
     void TurnOffGlow()
     {
-        if (!mLightOn)
-            return;
-        mLightOn = false;
+        //if (!mLightOn)
+        //    return;
+        //mLightOn = false;
         GetComponent<shaderGlow>().lightOff();
         GetComponent<shaderGlow>().glowColor = Color.green;
     }

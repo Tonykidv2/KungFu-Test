@@ -47,7 +47,7 @@ public class shaderGlow : MonoBehaviour
     private bool flashDirectionUp = true;
     private GUIStyle style;
     private bool showLabel = false;
-
+    private bool isLightOn = false;
     void Awake()
     {
         //Grab the glow shader
@@ -276,6 +276,11 @@ public class shaderGlow : MonoBehaviour
 
     public void lightOn()
     {
+        if (isLightOn)
+            return;
+
+        isLightOn = true;
+
         if (!labelToDisplay.Equals("") && labelMode == labelModes.whenGlowIsOn)
             showLabel = true;
 
@@ -323,6 +328,10 @@ public class shaderGlow : MonoBehaviour
 
     public void lightOff()
     {
+        if (!isLightOn)
+            return;
+        isLightOn = false;
+
         if (labelMode == labelModes.whenGlowIsOn)
             showLabel = false;
 

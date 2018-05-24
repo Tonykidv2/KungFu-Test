@@ -21,6 +21,7 @@ public class FightDirector : MonoBehaviour {
 
         if(AttackTokenCooldown < 0f)
         {
+            int numTries = 3;
             while(true)
             {
                 int random = Random.Range(0, mFighters.Count);
@@ -29,6 +30,9 @@ public class FightDirector : MonoBehaviour {
                     mFighters[random].GetComponent<EnemyScript>().GetReadyToAttack();
                     break;
                 }
+                numTries--;
+                if (numTries <= 0)
+                    break;
             }
             AttackTokenCooldown = ResetTimer;
         }
