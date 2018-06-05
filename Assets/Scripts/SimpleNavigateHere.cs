@@ -19,7 +19,7 @@ public class SimpleNavigateHere : MonoBehaviour {
             ClearFieldofMarkers();
     }
 
-    void OnTouchDown(Vector3 _postion)
+    void OnTouchUp(Vector3 _postion)
     {
         if (mPlayer != null)
         {

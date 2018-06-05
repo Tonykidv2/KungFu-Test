@@ -24,7 +24,7 @@ public class MainCharacterScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (mNavMeshAgent.velocity != Vector3.zero)
+        if (mNavMeshAgent.velocity != Vector3.zero || Vector3.Distance(mNavMeshAgent.destination, transform.position) > 1)
         {
             mAnimator.SetBool("Moving", true);
             InstantlyTurn(mNavMeshAgent.destination);
@@ -44,7 +44,7 @@ public class MainCharacterScript : MonoBehaviour {
 	}
 
     public void GoThere(Vector3 _Destination, bool _isEnemy){
-        
+        mNavMeshAgent.SetDestination(transform.position);
         mNavMeshAgent.SetDestination(_Destination);
         mAttackingEnemy = _isEnemy;
         if (mAttackingEnemy)
@@ -73,6 +73,7 @@ public class MainCharacterScript : MonoBehaviour {
         ////////////////////////////////////
 
         mNavMeshAgent.isStopped = false;
+        mNavMeshAgent.SetDestination(transform.position);
     }
 
     public bool isAttackingEnemy()

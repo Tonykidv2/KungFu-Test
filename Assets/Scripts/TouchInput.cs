@@ -45,10 +45,10 @@ public class TouchInput : MonoBehaviour {
                 {
                     recipient.SendMessage("OnTouchUp", hit.point, SendMessageOptions.DontRequireReceiver);
                 }
-                if (Input.GetMouseButton(0))
-                {
-                    recipient.SendMessage("OnTouchSwipe", hit.point, SendMessageOptions.DontRequireReceiver);
-                }
+                //if (Input.GetMouseButton(0))
+                //{
+                //    recipient.SendMessage("OnTouchSwipe", hit.point, SendMessageOptions.DontRequireReceiver);
+                //}
 
             }
             foreach (var g in touchOld)
@@ -82,12 +82,12 @@ public class TouchInput : MonoBehaviour {
 
                     if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
                     {
-                        recipient.SendMessage("OnTouchStay", hit.point, SendMessageOptions.DontRequireReceiver);
-                        if (touch.deltaPosition.x > 1 || touch.deltaPosition.y > 1)
+                        if (touch.deltaPosition.x > 3 || touch.deltaPosition.y > 3)
                         {
                             recipient.SendMessage("OnTouchSwipe", hit.point, SendMessageOptions.DontRequireReceiver);
                             continue;
                         }
+                        recipient.SendMessage("OnTouchStay", hit.point, SendMessageOptions.DontRequireReceiver);
                     }
                     if (touch.phase == TouchPhase.Began)
                     {

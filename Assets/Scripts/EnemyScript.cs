@@ -34,7 +34,7 @@ public class EnemyScript : MonoBehaviour {
         }
 	}
 
-    void OnTouchDown(Vector3 _postion)
+    void OnTouchUp(Vector3 _postion)
     {
         if (mPlayer != null)
         {
